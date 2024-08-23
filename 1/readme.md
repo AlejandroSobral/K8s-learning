@@ -11,23 +11,23 @@ DB interaction through the web as well.
 
 
 ```bash
-  cd to Docker/0
+  cd to Docker/1
 ```
 
 
 #### Build image
 ```bash
-    docker build -t flask1:v1 .
+    docker build -t mongodb:v1 .
 ```
 
 
 #### Run Image
 ```bash
-    docker run -p 5001:5000 flask1:v1
+    docker run -p 5002:27017 -v /vol:/data/db --cpus=1 --memory=64m --name tiny-mongodb mongodb:v1 
 ```
 
 #### Connect to web-server
 
 ```bash
-    curl localhost:5001
+    curl localhost:5002
 ```
