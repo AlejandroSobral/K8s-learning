@@ -1,26 +1,17 @@
-# This line specifies the base image for our container.
-# We're using the official Python image, which provides a minimal Python environment.
-FROM python
+# Base Image
+FROM mongo:latest
 
-# This line sets the working directory inside the container.
-# All subsequent commands will be executed in this directory.
-WORKDIR /app
+# Expose MongoDB Port
+# This line exposes port 27017 on the container, making it accessible to other applications or containers.
+# MongoDB uses port 27017 by default.
+EXPOSE 27017
 
-# This line installs the Flask framework using pip, the Python package manager.
-# Flask is a web framework for building web applications in Python.
-RUN pip install flask
+# Persistent Data Volume
+# This line defines a volume named `/data/db` within the container. A volume is a persistent storage location that can be shared between containers or mapped to a directory on the host system.
+# By using a volume, any data written to the `/data/db` directory will be preserved even if the container is restarted or removed. This is crucial for MongoDB, as it stores its data in this directory.
+VOLUME /data/db
 
-# This line exposes port 5000 of the container.
-# This allows external applications to access the web application running inside the container
-# on port 5000.
-EXPOSE 5000
-
-# This line **copies the contents of the directory /api from the build context**
-# (the directory where the Dockerfile is located) to the working directory (/app)
-# inside the container. 
-COPY /api .
-
-# This line defines the default command that will be executed when the container starts.
-# In this case, it runs the Python interpreter ("python") with the argument "app.py".
-# This assumes your web application is defined in a file named "app.py". 
-CMD  ["python", "app.py"]
+# Run MongoDB Server
+# This line specifies the default command that will be executed when the container starts. In this case, it runs the `mongod` process, which is the MongoDB server.
+# This ensures that the MongoDB server is running within the container when it starts.
+CMD ["mongod"]
