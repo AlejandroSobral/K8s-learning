@@ -23,11 +23,20 @@ DB interaction through the web as well.
 
 #### Run Image
 ```bash
-    docker run -p 5002:27017 -v /vol:/data/db --cpus=1 --memory=64m --name tiny-mongodb mongodb:v1 
+    docker run -p 5002:27017 -v /vol:/data/db --cpus=1 --memory=512m -e MONGO_INITDB_ROOT_USERNAME=mongoadmin -e MONGO_INITDB_ROOT_PASSWORD=firstmongo --name tiny-mongodb mongodb:v1 
+
 ```
 
 #### Connect to web-server
 
 ```bash
     curl localhost:5002
+```
+
+#### Connect info
+
+```bash
+mongosh mongodb://localhost:5002
+
+mongosh mongodb://mongoadmin:firstmongo@localhost:5002
 ```
