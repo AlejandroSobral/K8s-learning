@@ -23,18 +23,23 @@ Take into consideration using the MongoDB extension for VisualStudio code.
 ```
 
 ```bash
-    docker build -t tiny-web:v1.0 .
+    docker build -t tiny-web:v1.1 .
 ```
+#### Build basic network
 
+```bash
+docker network create my-network
+```
 
 #### Run Images
 ```bash
-    docker run -p 5002:27017 -v /vol:/data/db --cpus=1 --memory=512m --name tiny-mongodb mongodb:v1.1 
+    docker run -d -p 5002:27017 -v /vol:/data/db --cpus=1 --memory=512m --name tiny-mongodb --network my-network mongodb:v1.1
 
 ```
 
+
 ```bash
-    docker run -d -p 5001:5000 --cpus=1 --memory=64m --name tiny-web iny-web:v1.0
+    docker run -d -p 5001:5000 --cpus=1 --memory=64m --name tiny-web --network my-network tiny-web:v1.11
 
 ```
 
