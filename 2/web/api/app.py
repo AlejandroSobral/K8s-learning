@@ -10,16 +10,9 @@ def read_yaml_config():
         return yaml.safe_load(f)
 
 
-def get_mongodb_host():
-    client = docker.from_env()
-    container = client.containers.get(cfg_params["db_container_name"])  # Replace with your MongoDB container name
-    return container.attrs['NetworkSettings']['Networks']['my-network']['IPAddress']
-
-# Replace with your actual MongoDB connection details
-
 cfg_params= read_yaml_config() #Configuration parameters
 
-MONGODB_HOST = get_mongodb_host()
+MONGODB_HOST = "172.18.0.2:27017"
 MONGODB_DATABASE = "FirstDB"
 MONGODB_COLLECTION = "CollectOne"
 
@@ -88,5 +81,4 @@ def delete_item(item_id):
         return jsonify({'error': 'Unsupported method'}), 405
 
 if __name__ == "__main__":
-    get_mongodb_host()
     app.run(host='0.0.0.0', debug=False)
