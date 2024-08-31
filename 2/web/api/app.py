@@ -1,9 +1,25 @@
+import docker
 from flask import Flask, request, jsonify, render_template, redirect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+import yaml
+
+
+def read_yaml_config():
+    with open(f"/{__file__.rsplit('.', 1)[0]}.yaml", 'r') as f:
+        return yaml.safe_load(f)
+
+
+def get_mongodb_host():
+    client = docker.from_env()
+    container = client.containers.get(cfg_params["db_container_name"])  # Replace with your MongoDB container name
+    return container.attrs['NetworkSettings']['Networks']['my-network']['IPAddress']
 
 # Replace with your actual MongoDB connection details
-MONGODB_HOST = "mongodb://localhost:5002"  # Replace with container name
+
+cfg_params= read_yaml_config() #Configuration parameters
+
+MONGODB_HOST = get_mongodb_host()
 MONGODB_DATABASE = "FirstDB"
 MONGODB_COLLECTION = "CollectOne"
 
@@ -13,6 +29,7 @@ db = client[MONGODB_DATABASE]
 collection = db[MONGODB_COLLECTION]
 
 app = Flask(__name__, static_folder='static')
+
 
 
 @app.route('/')
@@ -71,4 +88,5 @@ def delete_item(item_id):
         return jsonify({'error': 'Unsupported method'}), 405
 
 if __name__ == "__main__":
+    get_mongodb_host()
     app.run(host='0.0.0.0', debug=False)

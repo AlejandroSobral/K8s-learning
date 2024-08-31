@@ -10,6 +10,8 @@ WORKDIR /app
 # Flask is a web framework for building web applications in Python.
 RUN pip install flask
 RUN pip install pymongo
+RUN pip install docker
+RUN pip install pyyaml
 
 # This line exposes port 5000 of the container.
 # This allows external applications to access the web application running inside the container
