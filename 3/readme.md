@@ -1,6 +1,6 @@
 # Description
-
-
+This time we are producing the same working environment but using a Dockercompose file instead of two Dockerfiles.
+It can be called "First Orchestation" approach.
 
 ---------------------------------------
 
@@ -13,7 +13,7 @@ Take into consideration using the MongoDB extension for VisualStudio code.
 
 
 ```bash
-  cd to Docker/2
+  cd to Docker/1
 ```
 
 
@@ -55,7 +55,10 @@ docker network create my-network
 mongosh mongodb://localhost:5002
 ```
 
-#### Try first insert
+#### DB test insert
+
+<details>
+<summary>Expand</summary>
 
 ```bash
 
@@ -77,12 +80,14 @@ db.getCollection('CollectOne').insertOne({
 db.CollectOne.find({name: "AleSb"}).pretty()
 
 ```
+</details>
 
 ### Try stop and run the container again
 
-``` bash
+<details>
 
+``` bash
 docker stop tiny-mongodb
 docker start tiny-mongodb
 ```
-
+</details>
