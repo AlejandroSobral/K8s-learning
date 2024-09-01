@@ -13,7 +13,14 @@ Take into consideration using the MongoDB extension for VisualStudio code.
 
 
 ```bash
-  cd to Docker/1
+  cd to Docker/3
+```
+#### Fresh start
+
+Before running it for the first time, prune networks, containers and volumes.
+
+```bash
+    docker system prune -a --volumes -f
 ```
 
 
@@ -25,69 +32,19 @@ Take into consideration using the MongoDB extension for VisualStudio code.
 ```bash
     docker build -t tiny-web:v1.181 .
 ```
-#### Build basic network
+
+#### Run both containers
+
+Check for existing volumes, networks and stuff once compose has been ran.
 
 ```bash
-docker network create my-network
+    docker volume ls
 ```
-
-#### Run Images
-```bash
-    docker run -d -p 5002:27017 -v /vol:/data/db --cpus=1 --memory=512m --name tiny-mongodb --network my-network mongodb:v1.1
-    docker run -d -v /vol:/data/db --cpus=1 --memory=512m --name tiny-mongodb --network my-network mongodb:v1.1
-```
-
 
 ```bash
-    docker run -d -p 5001:5000 --cpus=1 --memory=64m --name tiny-web --network my-network -e MONGO_URI=mongodb://tiny-mongodb:27017 tiny-web:v1.181
-
+docker network ls
 ```
-
-#### Connect to web-server
 
 ```bash
-    curl localhost:5002
+    docker-compose up -d
 ```
-
-#### Connect to instance
-
-```bash
-mongosh mongodb://localhost:5002
-```
-
-#### DB test insert
-
-<details>
-<summary>Expand</summary>
-
-```bash
-
-const database = 'FirstDB';
-const collection = 'CollectOne';
-
-// Create a new database.
-use(database);
-
-// Create a new collection.
-db.createCollection(collection);
-
-db.getCollection('CollectOne').insertOne({
-    "name": "AleSb",
-    "role": "Professional Student"
-});
-
-// Find documents where the name is "AleSb"
-db.CollectOne.find({name: "AleSb"}).pretty()
-
-```
-</details>
-
-### Try stop and run the container again
-
-<details>
-
-``` bash
-docker stop tiny-mongodb
-docker start tiny-mongodb
-```
-</details>
