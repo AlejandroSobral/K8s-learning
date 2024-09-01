@@ -26,8 +26,9 @@ app = Flask(__name__, static_folder='static')
 
 @app.route('/')
 def hello_world():
-    return render_template('index.html')
-
+    pod_name = os.getenv('HOSTNAME', 'unknown')
+    return render_template('index.html', pod_name=pod_name)
+    
 
 @app.route('/items', methods=['POST', 'GET'])
 def manage_items():
