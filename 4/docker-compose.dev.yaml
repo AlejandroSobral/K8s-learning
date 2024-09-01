@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  mongodb:
+    ports:
+      - "5002:27017"  # Exposing MongoDB port to host (map container port 27017 to host port 5001)
+    deploy:
+      resources:
+        limits:
+          memory: "256M"     # Set memory limit to 1 GB
+        reservations:
+          memory: "128M"   # Reserve 512 MB of memory
+
+  web:
+    deploy:
+      resources:
+        limits:
+          memory: "32M"     # Set memory limit to 2 GB
+        reservations:
+          memory: "16M"     # Reserve 1 GB of memory

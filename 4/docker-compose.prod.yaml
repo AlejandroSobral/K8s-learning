@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mongodb:
+    deploy:
+      resources:
+        limits:
+          memory: "1G"     # Set memory limit to 1 GB
+        reservations:
+          memory: "256M"   # Reserve 512 MB of memory
+
+  web:
+    image: tiny-web:v1.181
+    ports:
+      - "5000:5000"
+    deploy:
+      resources:
+        limits:
+          memory: "256M"     # Set memory limit to 2 GB
+        reservations:
+          memory: "16M"     # Reserve 1 GB of memory
