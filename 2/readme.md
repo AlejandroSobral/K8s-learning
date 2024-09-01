@@ -18,6 +18,9 @@ Take into consideration using the MongoDB extension for VisualStudio code.
 
 
 #### Build images
+
+Fist move the each directory, where each Dockerfile resides, before building. (web/db)
+
 ```bash
     docker build -t mongodb:v1.1 .
 ```
