@@ -54,7 +54,7 @@ Idem 2 but using a Compose.
  ```
 </details>
 
-### 3: Interacting
+### 4: Interacting
 Idem 3 but using a multiple environments.
 
 <details>
