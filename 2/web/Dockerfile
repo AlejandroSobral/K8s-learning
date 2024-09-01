@@ -6,12 +6,11 @@ FROM python
 # All subsequent commands will be executed in this directory.
 WORKDIR /app
 
-# This line installs the Flask framework using pip, the Python package manager.
-# Flask is a web framework for building web applications in Python.
-RUN pip install flask
-RUN pip install pymongo
-RUN pip install docker
-RUN pip install pyyaml
+# Copy requirements file
+COPY requirements.txt requirements.txt
+
+# Install dependencies
+RUN pip install -r requirements.txt
 
 # This line exposes port 5000 of the container.
 # This allows external applications to access the web application running inside the container

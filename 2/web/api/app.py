@@ -3,16 +3,15 @@ from flask import Flask, request, jsonify, render_template, redirect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 import yaml
+import os
 
 
-def read_yaml_config():
-    with open(f"/{__file__.rsplit('.', 1)[0]}.yaml", 'r') as f:
-        return yaml.safe_load(f)
 
 
-cfg_params= read_yaml_config() #Configuration parameters
+mongo_uri = os.getenv('MONGO_URI', 'mongodb://tiny-mongodb:27017/mydatabase')
 
-MONGODB_HOST = "172.18.0.2:27017"
+
+MONGODB_HOST = mongo_uri
 MONGODB_DATABASE = "FirstDB"
 MONGODB_COLLECTION = "CollectOne"
 
