@@ -7,7 +7,7 @@ import os
 
 
 
-mongo_uri = os.getenv('MONGO_URI', 'mongodb://mongodb-service:27017')
+mongo_uri = os.getenv('MONGO_URI', 'mongodb://mongodb-service:27017/mydatabase')
 #mongo_uri = os.getenv('MONGO_URI', 'mongodb://tiny-mongodb:27017/mydatabase')
 
 

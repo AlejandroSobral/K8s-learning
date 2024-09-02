@@ -14,17 +14,17 @@ spec:
     spec:
       containers:
       - name: web
-        image: tiny-web:v1.181
+        image: tiny-web:1.19
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000
         env:
         - name: MONGO_URI
-          value: mongodb://mongodb:27017/mydatabase
+          value: mongodb://mongodb-service:27017/mydatabase
         resources:
           limits:
-            cpu: "100m"   # 100 milli CPUs
-            memory: "32Mi" # 32 MiB of memory
+            cpu: "400m"   # 100 milli CPUs
+            memory: "128Mi" # 32 MiB of memory
           requests:
-            cpu: "50m"    # 50 milli CPUs
-            memory: "16Mi" # 16 MiB of memory
+            cpu: "200m"    # 50 milli CPUs
+            memory: "64Mi" # 16 MiB of memory

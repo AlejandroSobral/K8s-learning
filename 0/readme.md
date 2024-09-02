@@ -64,7 +64,7 @@ Go to the Docker folder and check for the Web/Db folders.
 ```
 
 ```bash
-    docker build -t tiny-web:v1.181 .
+    docker build -t tiny-web:1.19 .
 ```
 
 #### Run different environment configurations
