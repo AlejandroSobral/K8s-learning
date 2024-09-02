@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+      containers:
+      - name: web
+        image: tiny-web:v1.181
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 5000
+        env:
+        - name: MONGO_URI
+          value: mongodb://mongodb:27017/mydatabase
+        resources:
+          limits:
+            cpu: "100m"   # 100 milli CPUs
+            memory: "32Mi" # 32 MiB of memory
+          requests:
+            cpu: "50m"    # 50 milli CPUs
+            memory: "16Mi" # 16 MiB of memory
