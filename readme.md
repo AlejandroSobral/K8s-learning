@@ -1,4 +1,5 @@
-# Tiny Kubernetes learning series
+
+# Tiny K8s learning series
 
 In this tiny K8s learning series, I'll be continue the series of tiny-learning projects from a [previous Docker Repo](https://github.com/AlejandroSobral/Docker-learning).
 
