@@ -1,5 +1,5 @@
 # Description
-Setting up a little K8s deployment using MiniKube locally.
+Setting up a little K8s deployment in Digital Ocean.
 
 ------------------------------------
 
@@ -9,6 +9,14 @@ Since this time deployment will occurr in Digital Ocean, no local stuff will hap
 Images has been already pushed into the Docker Registry.
 Remember to [sign up for 200 USD in credits](https://m.do.co/c/d67ad98bbcf8) for testing purposes.
 
+<div style="display: flex; justify-content: center;">
+  <div style="margin: 0 10px;">
+    <img src="Misc/AWS.png" alt="docker-logo" width="200" />
+  </div>
+  <div style="margin: 0 100px;">
+    <img src="Misc/DO.png" alt="aws-logo" width="170" />
+  </div>
+</div>
 
 ## Connect to DigitalOcean
 

@@ -1,9 +1,18 @@
 # Description
 Setting up a little K8s deployment using MiniKube locally.
 
+
+
+
 ------------------------------------
 
 ## Resources
+
+<div style="display: flex; justify-content: center;">
+  <div style="margin: 0 10px;">
+    <img src="Misc/Minikube.png" alt="MiniKube" width="200" />
+  </div>
+</div>
 
 <details>
 <summary> Install Mini-Kube (Ubuntu)</summary>
